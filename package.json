@@ -1,7 +1,10 @@
 {
-	"name": "xlsx",
+	"name": "styled-xlsx",
 	"version": "0.12.4",
-	"author": "sheetjs",
+	"author": [
+		"sheetjs,
+		luming"
+	],
 	"description": "SheetJS Spreadsheet data parser and writer",
 	"keywords": [
 		"excel",
