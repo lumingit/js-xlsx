@@ -2314,7 +2314,9 @@ var wtregex = /(^\s|\s$|\n)/;
 function writetag(f,g) { return '<' + f + (g.match(wtregex)?' xml:space="preserve"' : "") + '>' + g + '</' + f + '>'; }
 
 function wxt_helper(h) { return keys(h).map(function(k) { return " " + k + '="' + h[k] + '"';}).join(""); }
-function writextag(f,g,h) { return '<' + f + ((h != null) ? wxt_helper(h) : "") + ((g != null) ? (g.match(wtregex)?' xml:space="preserve"' : "") + '>' + g + '</' + f : "/") + '>';}
+function writextag(f,g,h) { return '<' + f + ((h && h.fgColor) ? ' style=\'background-color: #' + h.fgColor + '\' ' : '')
+	+ ((h != null) ? wxt_helper(h) : "")
+	+ ((g != null) ? (g.match(wtregex)?' xml:space="preserve"' : "") + '>' + g + '</' + f : "/") + '>';}
 
 function write_w3cdtf(d, t) { try { return d.toISOString().replace(/\.\d*/,""); } catch(e) { if(t) throw e; } return ""; }
 
@@ -17853,6 +17855,9 @@ var HTML_ = (function() {
 			sp.t = cell.t;
 			if(o.editable) w = '<span contenteditable="true">' + w + '</span>';
 			sp.id = "sjs-" + coord;
+      if(cell.s.fgColor.rgb) {
+        sp.fgColor = cell.s.fgColor.rgb;
+      }
 			oo.push(writextag('td', w, sp));
 		}
 		var preamble = "<tr>";
