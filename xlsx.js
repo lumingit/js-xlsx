@@ -17855,8 +17855,12 @@ var HTML_ = (function() {
 			sp.t = cell.t;
 			if(o.editable) w = '<span contenteditable="true">' + w + '</span>';
 			sp.id = "sjs-" + coord;
-      if(cell.s.fgColor.rgb) {
-        sp.fgColor = cell.s.fgColor.rgb;
+			if(cell.s) {
+        if(cell.s.fgColor) {
+          if (cell.s.fgColor.rgb) {
+            sp.fgColor = cell.s.fgColor.rgb;
+          }
+        }
       }
 			oo.push(writextag('td', w, sp));
 		}
