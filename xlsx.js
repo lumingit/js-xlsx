@@ -17863,7 +17863,7 @@ var HTML_ = (function() {
       }
 			oo.push(writextag('td', w, sp));
 		}
-		var preamble = oo.every((item) => { return item === nullcell; }) ? "<tr id=\'sjs-rownumber-" + R + "\' class='empty'>" : "<tr id=\'sjs-rownumber-" + R + "\'>";
+		var preamble = oo.every((item) => { return item === nullcell; }) ? "<tr id=\'sjs-rownumber-" + (R + 1) + "\' class='empty'>" : "<tr id=\'sjs-rownumber-" + (R + 1) + "\'>";
 		return preamble + oo.join("") + "</tr>";
 	}
 	function make_html_preamble(ws, R, o) {
