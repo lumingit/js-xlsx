@@ -17856,15 +17856,14 @@ var HTML_ = (function() {
 			if(o.editable) w = '<span contenteditable="true">' + w + '</span>';
 			sp.id = "sjs-" + coord;
 			if(cell.s) {
-        if(cell.s.fgColor) {
-          if (cell.s.fgColor.rgb) {
-            sp.fgColor = cell.s.fgColor.rgb;
-          }
+				sp.style = "";
+        if(cell.s.fgColor && cell.s.fgColor.rgb) {
+          sp.style += "background-color: #" + cell.s.fgColor.rgb + ";";
         }
       }
 			oo.push(writextag('td', w, sp));
 		}
-		var preamble = "<tr>";
+		var preamble = oo.every((item) => { return item === nullcell; }) ? "<tr id=\'sjs-rownumber-" + R + "\' class='empty'>" : "<tr id=\'sjs-rownumber-" + R + "\'>";
 		return preamble + oo.join("") + "</tr>";
 	}
 	function make_html_preamble(ws, R, o) {
