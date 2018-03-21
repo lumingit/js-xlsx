@@ -17877,10 +17877,20 @@ var HTML_ = (function() {
 		var header = o.header != null ? o.header : _BEGIN;
 		var footer = o.footer != null ? o.footer : _END;
 		var out = [header];
-		var r = decode_range(ws['!ref']);
+		var r = {s:{r:0,c:0},e:{r:0,c:0}};
+		var range = o.range != null ? o.range : ws['!ref'];
+		switch(typeof range) {
+			case 'string': r = safe_decode_range(range); break;
+			case 'number': r = safe_decode_range(ws["!ref"]); r.s.r = range; break;
+			default: r = range;
+		}
 		o.dense = Array.isArray(ws);
 		out.push(make_html_preamble(ws, r, o));
-		for(var R = r.s.r; R <= r.e.r; ++R) out.push(make_html_row(ws, r, R, o));
+		var rowinfo = o.skipHidden && ws["!rows"] || [];
+		for(var R = r.s.r; R <= r.e.r; ++R) {
+			if ((rowinfo[R]||{}).hidden) continue;
+			out.push(make_html_row(ws, r, R, o));
+		}
 		out.push("</table>" + footer);
 		return out.join("");
 	}

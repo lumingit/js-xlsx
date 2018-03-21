@@ -1,6 +1,6 @@
 {
 	"name": "styled-xlsx-sheetjs",
-	"version": "0.12.7",
+	"version": "0.12.8",
 	"author": [
 		"sheetjs",
 		"luming"
